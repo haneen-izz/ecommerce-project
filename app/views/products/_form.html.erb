@@ -1,0 +1,46 @@
+<%= form_with(model: @product) do |product|  %>
+
+
+<div class = "form">
+<%= product.label :name ,  class:"form-label" %>
+<%= product.text_field :name , class:"form-control" %>
+
+<%= product.label :description ,  class:"form-label" %>
+<%= product.text_area :description , class:"form-control" %>
+
+<%= product.label :price ,  class:"form-label" %>
+<%= product.text_field :price , class:"form-control" %>
+
+<%= product.label :production_date ,  class:"form-label" %>
+<%= product.date_field  :production_date , class:"form-control" %>
+
+<%= product.label :expiration_date ,  class:"form-label" %>
+<%= product.date_field  :expiration_date , class:"form-control" %>
+
+<%= product.label :stock_quantity ,  class:"form-label" %>
+<%= product.number_field  :stock_quantity , class:"form-control" %>
+
+<%= product.label :store_id ,  class:"form-label" %>
+
+<select name="product[store_id]" id="product_store_id" >
+  <option selected="selected" value="">Choose store</option>
+<%@stores.each do  |row|%>
+  <option value="<%=row.id%>" class="form-control"><%= row.name%></option>
+  <%end%>
+</select>
+
+
+
+
+
+
+
+
+
+<p><%= product.label :image%>
+<%= product.file_field :image, accept: 'image/png, image/gif, image/jpeg' %></p>
+
+</br>
+<%= product.submit  class:"btn btn-secondary"%>
+</div>
+<%end%>

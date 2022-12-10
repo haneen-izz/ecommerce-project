@@ -1,0 +1,20 @@
+<%= form_with(model: @user )  do |user|  %>
+
+
+<div class = "form">
+
+<%= user.label :email ,  class:"form-label"%>
+<%= user.text_field :email , class:"form-control" %>
+
+<%= user.label :password,  class:"form-label" %>
+<%= user.password_field  :password, class:"form-control" %>
+
+<%= user.label :role,  class:"form-label" %>
+<%= user.text_field  :role, class:"form-control" %>
+
+
+
+</br>
+<%= user.submit  class:"btn btn-secondary"%>
+</div>
+<%end%>

@@ -1,0 +1,43 @@
+<%= render 'layouts/shared/side_menu_owner'%>
+
+<div class="body_class">
+
+
+<table class="table align-middle mb-0 bg-white table-hover">
+  <thead class="bg-light">
+    <tr class="table-active">
+      <th>Name</th>
+
+      <th class="text-center">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  <%@stores.each do |row|%>
+    <tr>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.name%></p>
+          </div>
+        </div>
+      </td>
+      
+
+
+
+      <td class="text-center">
+         <%=link_to "show ", store_path(row) , class:"btn btn-success btn-sm btn-rounded"%>
+
+         <%=link_to "Edit Store ", edit_owner_store_path(row) ,class:"btn btn-primary btn-sm btn-rounded"%>
+       
+         <%=link_to "delete Store", destroy_owner_store_path(row), data: {'turbo-method': :delete  , turbo_confirm: 'Are you sure?'},class:"btn btn-danger btn-sm btn-rounded"%></td>
+      </td>
+    </tr>
+ <%end%>
+  </tbody>
+</table>
+<div class="btn-position"></div>
+ <%=link_to "Create Store ",owner_new_store_path , class:"btn btn-secondary btn-
+ lg btn-rounded"%>
+</div>

@@ -1,0 +1,27 @@
+
+<%= form_with(model: @product , url: edit_owner_product_path) do |product|  %>
+<div class = "form">
+<%= product.label :name ,  class:"form-label" %>
+<%= product.text_field :name , class:"form-control" %>
+
+<%= product.label :description ,  class:"form-label" %>
+<%= product.text_area :description , class:"form-control" %>
+
+<%= product.label :price ,  class:"form-label" %>
+<%= product.text_field :price , class:"form-control" %>
+
+<%= product.label :production_date ,  class:"form-label" %>
+<%= product.date_field  :production_date , class:"form-control" %>
+
+<%= product.label :expiration_date ,  class:"form-label" %>
+<%= product.date_field  :expiration_date , class:"form-control" %>
+
+<%= product.label :stock_quantity ,  class:"form-label" %>
+<%= product.number_field  :stock_quantity , class:"form-control" %>
+
+<%= product.label :store_id ,  class:"form-label" %>
+<%= product.number_field  :store_id , class:"form-control" %>
+</br>
+<%= product.submit  class:"btn btn-secondary"%>
+</div>
+<%end%>

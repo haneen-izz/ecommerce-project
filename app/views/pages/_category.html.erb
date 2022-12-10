@@ -1,0 +1,9 @@
+<div class="filter mt-3">
+
+<p class="mb-2">Category</p>
+<%@categories.each do |row|%>
+<ul class="list-group">
+<li class="list-group-item list-group-item-action mb-2 "> <%=link_to row.name, page_path(row) %></span> </a></li>
+ <%end%>
+</ul>
+</div>

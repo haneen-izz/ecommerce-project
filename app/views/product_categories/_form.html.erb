@@ -1,0 +1,30 @@
+<%= form_with(model: @product_category) do |product_category|  %>
+
+
+<div class = "form">
+<%= product_category.label :product_id ,  class:"form-label" %>
+
+
+
+
+<select name="product_category[product_id]" id="product_category_product_id" >
+  <option selected="selected" value="">Choose product</option>
+<%@products.each do  |row|%>
+  <option value="<%=row.id%>" class="form-control"><%= row.name%></option>
+  <%end%>
+</select>
+
+<%= product_category.label :category_id ,  class:"form-label" %>
+
+<select name="product_category[category_id]" id="product_category_category_id" >
+  <option selected="selected" value="">Choose category</option>
+<%@categories.each do  |row|%>
+  <option value="<%=row.id%>" class="form-control"><%= row.name%></option>
+  <%end%>
+</select>
+
+
+</br>
+<%= product_category.submit  class:"btn btn-secondary"%>
+</div>
+<%end%>

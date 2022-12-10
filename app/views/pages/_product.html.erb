@@ -1,0 +1,48 @@
+
+        <div class="product-section">
+			<div class="container">
+				<div class="row">
+					<!-- Start Column 1 -->
+					<div class="col-md-12 col-lg-3 mb-5 mb-lg-0 " hidden>
+						<h2 class="mb-4 section-title">Crafted with excellent material.</h2>
+						<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
+						<p><a href="shop.html" class="btn">Explore</a></p>
+					</div> 
+					<!-- End Column 1 -->
+                    
+					<!-- Start Column 2 -->
+                       <%@products.each do |row|%>
+					<div class="col-12 col-md-4 col-lg-4 mb-5 mt-5 mb-md-0">
+						<a class="product-item">
+					
+                            <%if row.image.attached?%>
+                                  <img  class="img-fluid product-thumbnail" src="<%= url_for (row.image)%> ">
+                                  <%end%>
+
+							<h3 class="product-title"><%=row.name%></h3>
+							<strong class="product-price">$<%=row.price%></strong>
+    
+							<span class="icon-cross">
+								<%# <img src="images/cross.svg" class="img-fluid"> %>
+								    <%= form_with(url:carts_path ,scope: :cart) do |f|%>
+                                    <%= f.hidden_field :product_id , value: row.id%>
+									<%= f.hidden_field :quantity , value: 1%>
+									<%= f.hidden_field :price , value: row.price%>
+								    <%= f.hidden_field :product_name , value: row.name%>
+								    <%= f.hidden_field :guest_id , value: @rand_c%>
+                                    
+         							<%= f.submit  "Add to cart",  class: "btn btn-secondary add-cart"%>
+									<%end%>
+
+					     	</span>
+						</a>
+					</div> 
+                    <%end%>
+					<!-- End Column 2 -->
+				</div>
+			</div>
+		</div>
+
+
+
+         

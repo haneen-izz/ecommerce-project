@@ -1,0 +1,21 @@
+<%= form_with(model: @order) do |order|  %>
+
+
+<div class = "form">
+<%= order.label :user_id ,  class:"form-label" %>
+<%= order.text_field :user_id , class:"form-control" %>
+
+<%= order.label :product_id ,  class:"form-label" %>
+<%= order.text_field :product_id , class:"form-control" %>
+
+<%= order.label :quantity ,  class:"form-label" %>
+<%= order.text_field :quantity , class:"form-control" %>
+
+<%= order.label :price ,  class:"form-label" %>
+<%= order.text_field :price , class:"form-control" %>
+
+
+</br>
+<%= order.submit  class:"btn btn-secondary"%>
+</div>
+<%end%>

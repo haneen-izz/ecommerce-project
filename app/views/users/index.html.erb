@@ -1,0 +1,42 @@
+<%= render 'layouts/shared/side_menu'%>
+
+<div class="body_class">
+
+
+<table class="table align-middle mb-0 bg-white table-hover">
+  <thead class="bg-light">
+    <tr class="table-active">
+      <th>Email</th>
+      <th>Role</th>
+      <th class="text-center">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  <%@users.each do |row|%>
+    <tr>
+     
+      <td>
+      <div class="d-flex align-items-center">
+        <p class="fw-normal mb-1"><%=row.email%></p>
+      </td>
+      <td>
+        <p class="fw-normal mb-1"><%=row.role%></p>
+      </td>
+      <td class="text-center">
+
+        <%=link_to "show ", user_path(row) , class:"btn btn-success btn-sm btn-rounded"%>
+
+         <%=link_to "Edit Product ", edit_user_path(row) ,class:"btn btn-primary btn-sm btn-rounded"%>
+
+        <%=link_to "delete user", row, data: {'turbo-method': :delete  , turbo_confirm: 'Are you sure?'},class:"btn btn-danger btn-sm btn-rounded"%></td>
+
+      </td>
+    </tr>
+ <%end%>
+  </tbody>
+</table>
+<div class="btn-position"></div>
+ <%=link_to "Create User ", new_user_path , class:"btn btn-secondary btn-
+ lg btn-rounded"%>
+</div>

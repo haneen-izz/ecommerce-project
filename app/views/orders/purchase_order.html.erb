@@ -1,0 +1,90 @@
+<%= render 'layouts/shared/side_menu_owner'%>
+
+<div class="body_class">
+
+
+<table class="table align-middle mb-0 bg-white table-hover">
+  <thead class="bg-light">
+    <tr class="table-active">
+      <th>Order id</th>
+      <th>User id</th>
+      <th>Email</th>
+      <th>Product id</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Store name</th>
+      <th>Purcahse date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@stores.each do |store_row|%>
+      <%if current_user.id == store_row.user_id%>
+      <%@get_order_by_owner.each do |row|%>
+      <%if row.product.store.id == store_row.id%>
+    <tr>
+     <td>
+        <div class="d-flex align-items-center">
+         
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.id%></p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+         
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.user_id%></p>
+          </div>
+        </div>
+      </td>
+
+       <td>
+        <div class="d-flex align-items-center">
+         
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.user.email%></p>
+          </div>
+        </div>
+      </td>
+      <td>
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.product_id%></p>
+          </div>
+        </div>
+      </td>
+        <td>
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.quantity%></p>
+          </div>
+        </div>
+      </td>
+        <td>
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.price%></p>
+          </div>
+        </div>
+      </td>
+       <td>
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.product.store.name%></p>
+          </div>
+        </div>
+      </td>
+      <td>
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%=row.created_at%></p>
+          </div>
+        </div>
+      </td>
+      
+
+  
+    </tr>
+     <%end%>
+   <%end%>
+  <%end%>
+ <%end%>
+
+  </tbody>
+</table>
