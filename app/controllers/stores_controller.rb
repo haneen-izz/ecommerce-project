@@ -58,8 +58,6 @@ class StoresController < ApplicationController
 		redirect_to owner_store_path
     end
 
-
-
 	private 
 	def store_params
 		params.require(:store).permit(:name , :user_id )

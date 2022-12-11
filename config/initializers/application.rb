@@ -1,0 +1,1 @@
+Date::DATE_FORMATS[:stamp] = "%Y%m%d"

@@ -15,22 +15,15 @@ class CartsController < ApplicationController
 		@multiply = 0
 	end
 	def update
-		@cart_product.update(cart_params)
-
+		p '<======================params', cart_params, '================================>'
+		@cart_product.update(cart_update_params)
 	end
 	def destroy
 		@cart_product.destroy
 		redirect_to carts_path
 	end
-	# def total_price
-	# 	@total = 0
-	# 	@multiply = 0
-	# 	Cart.each do |cart_product|
-	# 	@multiply = cart_product.quantity * cart_product.price
-	# 	total  = total + @multiply
-	# 	end
-	# end
-   
+	
+
 	def checkout
        if session[:user_id]
 		  Cart.all.each do |cart|
@@ -49,6 +42,9 @@ class CartsController < ApplicationController
     private 
 	def cart_params
 		params.require(:cart).permit(:quantity,:product_id , :price , :guest_id ,:product_name)
+	end
+	def cart_update_params
+		params.require(:cart).permit(:quantity)
 	end
 	def order_params
 	    params.require(:order).permit(:user_id ,:product_id ,:quantity ,:price ,:product_name  )
