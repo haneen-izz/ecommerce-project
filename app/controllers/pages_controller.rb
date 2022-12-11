@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   before_action :category ,only: [:guest,:highest_price,:lowest_price,:show,:search]
+  #######################################################################
+  # Guest page that contains the products 
   def guest
     @products = Product.all
   end
@@ -13,9 +15,6 @@ class PagesController < ApplicationController
   def index
      @products = Product.all 
   end
-
-  # def product 
-  # end
 
   def highest_price
       @products = Product.order(price: :desc)
@@ -31,6 +30,9 @@ class PagesController < ApplicationController
     @products = Category.find(params[:id]).products
     render :guest
   end
+
+  #######################################################################
+  # This method search for a particular product when user enter a product name even he entered only first two chars it will return the similar products with first chars
   def search 
        @products = Product.where('name LIKE ?','%' + params[:name] + '%')
        render :guest

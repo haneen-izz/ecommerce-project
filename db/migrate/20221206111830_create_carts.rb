@@ -5,7 +5,6 @@ class CreateCarts < ActiveRecord::Migration[7.0]
       t.integer :quantity
       t.float :price
       t.integer :guest_id
-
       t.string :product_name
       t.timestamps
     end

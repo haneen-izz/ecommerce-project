@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
     before_action :set_product, only: [:show, :destroy,:edit,:update , :edit_owner_product, :update_owner_product, :destroy_owner_product]
     before_action :admin_only  ,:only => [:show,:index, :destroy,:edit,:update ] 
-	before_action :all_product
+	before_action :all_stores
 
-	# customer crud
+	# customer product
 	def new 
 		@product = Product.new    
 	end
@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
     end
 
 	
-    # owner crud
+    # owner product
     def owner_product 
 		@products = Product.where(user_id: current_user.id)
 		@user_id = current_user.id
@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
     def set_product
         @product = Product.find(params[:id])
 	end
-	def all_product
+	def all_stores
 		@stores= Store.all
     end
 end

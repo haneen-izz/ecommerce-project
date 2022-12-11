@@ -1,40 +1,33 @@
-
 <!--Main Navigation-->
 <header>
-  <!-- Sidebar -->
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-  <div>
-  <h4 class="admin_logo">
-   Owner Dashboard
-  </h4>
-  </div>
-    <div class="position-sticky">
+<!-- Sidebar -->
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+   <div>
+      <h4 class="admin_logo">
+         Owner Dashboard
+      </h4>
+   </div>
+   <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-    
          <div  class="list-group-item list-group-item-action py-2 ripple">
-         <i  class="fa fa-shopping-bag me-3"></i>
-         <%=link_to "Products" ,  owner_product_path 
-         
-          %>
-        </div>
+            <i  class="fa fa-shopping-bag me-3"></i>
+            <%=link_to "Products" ,  owner_product_path 
+               %>
+         </div>
          <div  class="list-group-item list-group-item-action py-2 ripple">
-         <i  class="fas fa-store-alt me-3"></i>
-        <%=link_to "Stores" ,  owner_store_path 
-         
-        %>
-       
-        </div> 
-      
+            <i  class="fas fa-store-alt me-3"></i>
+            <%=link_to "Stores" ,  owner_store_path 
+               %>
+         </div>
          <div  class="list-group-item list-group-item-action py-2 ripple">
-         <i  class="fas fa-store-alt me-3"></i>
-        <%=link_to "Purchase order" ,  purchase_order_path 
-         
-        %>
-        </div> 
-           <div  class="list-group-item list-group-item-action py-2 ripple">
-         <i  class="fa fa-sign-out me-3"></i>
-        <%=link_to "Log out" ,destroy_user_session_path, 'data-turbo-method': :delete %>
-        </div> 
+            <i  class="fa-solid fa-basket-shopping me-3"></i>
+            <%=link_to "Purchase order" ,  purchase_order_path 
+               %>
+         </div>
+         <div  class="list-group-item list-group-item-action py-2 ripple">
+            <i  class="fa fa-sign-out me-3"></i>
+            <%=link_to "Log out" ,destroy_user_session_path, 'data-turbo-method': :delete %>
+         </div>
       </div>
-    </div>
-  </nav>
+   </div>
+</nav>

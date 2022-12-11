@@ -1,8 +1,6 @@
 <%= form_with(model: @user )  do |user|  %>
 
-
-<div class = "form">
-
+<div class = "form container mt-5">
 <%= user.label :email ,  class:"form-label"%>
 <%= user.text_field :email , class:"form-control" %>
 
@@ -10,9 +8,7 @@
 <%= user.password_field  :password, class:"form-control" %>
 
 <%= user.label :role,  class:"form-label" %>
-<%= user.text_field  :role, class:"form-control" %>
-
-
+<%= user.select :role, User.roles.keys %>
 
 </br>
 <%= user.submit  class:"btn btn-secondary"%>

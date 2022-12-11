@@ -33,8 +33,8 @@ class ProductCategoriesController < ApplicationController
        end
 
        def destroy
-        @product_category.destroy
-        redirect_to product_categories_path
+           @product_category.destroy
+           redirect_to product_categories_path
        end
     private 
 	  def product_category_params
@@ -44,7 +44,7 @@ class ProductCategoriesController < ApplicationController
            @product_category = ProductCategory.find(params[:id])
 	end
     def all_product_category
-        @products = Product.all
+         @products = Product.all
          @categories = Category.all
     end
 end

@@ -1,12 +1,10 @@
 <%= form_with(model: @product_category) do |product_category|  %>
 
 
-<div class = "form">
-<%= product_category.label :product_id ,  class:"form-label" %>
+<div class = "form container mt-5">
 
 
-
-
+<%= product_category.label :Product_Name ,  class:"form-label" %>
 <select name="product_category[product_id]" id="product_category_product_id" >
   <option selected="selected" value="">Choose product</option>
 <%@products.each do  |row|%>
@@ -14,8 +12,7 @@
   <%end%>
 </select>
 
-<%= product_category.label :category_id ,  class:"form-label" %>
-
+<%= product_category.label :Category_Name ,  class:"form-label" %>
 <select name="product_category[category_id]" id="product_category_category_id" >
   <option selected="selected" value="">Choose category</option>
 <%@categories.each do  |row|%>

@@ -1,47 +1,34 @@
 <%= render 'layouts/shared/side_menu'%>
-
 <div class="body_class">
-
-
-<table class="table align-middle mb-0 bg-white table-hover">
-  <thead class="bg-light">
-    <tr class="table-active">
-      <th>Name</th>
-      <th class="text-center">Action</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-  <%@categories.each do |row|%>
-    <tr>
-      <td>
-        <div class="d-flex align-items-center">
-          <img
-              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-              alt=""
-              style="width: 45px; height: 45px"
-              class="rounded-circle"
-              />
-          <div class="ms-3">
-            <p class="fw-bold mb-1"><%=row.name%></p>
-          </div>
-        </div>
-      </td>
-
-
-
-      <td class="text-center">
-         <%=link_to "show ", category_path(row) , class:"btn btn-success btn-sm btn-rounded"%>
-
-         <%=link_to "Edit Category ", edit_category_path(row) ,class:"btn btn-primary btn-sm btn-rounded"%>
-       
-         <%=link_to "delete Category", row, data: {'turbo-method': :delete  , turbo_confirm: 'Are you sure?'},class:"btn btn-danger btn-sm btn-rounded"%></td>
-      </td>
-    </tr>
- <%end%>
-  </tbody>
-</table>
-<div class="btn-position"></div>
- <%=link_to "Create Category ", new_category_path , class:"btn btn-secondary btn-
- lg btn-rounded"%>
+   <table class="table align-middle mb-0 bg-white table-hover">
+      <thead class="bg-light">
+         <tr class="table-active">
+            <th>Name</th>
+            <th class="text-center">Action</th>
+         </tr>
+      </thead>
+      <tbody>
+         <%@categories.each do |row|%>
+         <tr>
+            <td>
+               <div class="d-flex align-items-center">
+                
+                  <div class="ms-3">
+                     <p class="fw-bold mb-1"><%=row.name%></p>
+                  </div>
+               </div>
+            </td>
+            <td class="text-center">
+               <%=link_to "show ", category_path(row) , class:"btn btn-success btn-sm btn-rounded"%>
+               <%=link_to "Edit Category ", edit_category_path(row) ,class:"btn btn-primary btn-sm btn-rounded"%>
+               <%=link_to "delete Category", row, data: {'turbo-method': :delete  , turbo_confirm: 'Are you sure?'},class:"btn btn-danger btn-sm btn-rounded"%>
+            </td>
+            </td>
+         </tr>
+         <%end%>
+      </tbody>
+   </table>
+   <div class="btn-position"></div>
+   <%=link_to "Create Category ", new_category_path , class:"btn btn-secondary btn-
+      lg btn-rounded"%>
 </div>

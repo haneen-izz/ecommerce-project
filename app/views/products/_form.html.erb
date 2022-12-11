@@ -1,7 +1,7 @@
-<%= form_with(model: @product) do |product|  %>
+<%= form_with(model: @product) do |product| %>
 
 
-<div class = "form">
+<div class = "form container mt-5">
 <%= product.label :name ,  class:"form-label" %>
 <%= product.text_field :name , class:"form-control" %>
 
@@ -37,3 +37,4 @@
 <%= product.submit  class:"btn btn-secondary"%>
 </div>
 <%end%>
+

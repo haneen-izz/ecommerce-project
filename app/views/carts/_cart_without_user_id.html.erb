@@ -1,29 +1,27 @@
-      <%@cart_products.each do |row|%> 
-        <%if session[:rand_cart] == row.guest_id %>
-    <tr>
-
-    <td class="product-name">
-        <h2 class="h5 text-black"><%=row.product_name%></h2>
-    </td>
-    <td>$<%=row.price%></td>
-    
-    <td>
-    <%= form_with( url: update_quantity_path(row)  ,scope: :cart , method: :put  ) do |f| %>
-    
-    <%= f.hidden_field :id , value: row.id%>
-    <%= f.number_field :quantity%>
-    <%= f.submit 'add quantity' %>
-    <% end %>
-
-    </td>
-    <td><%= row.quantity * row.price%></td>
-    <td>
-    <%=link_to "X", delete_item_path(row), data: {'turbo-method': :delete  , turbo_confirm: 'Are you sure?'},class:"btn btn-danger btn-sm btn-rounded"%></td>
-    </td>
-    </tr>
-    <div hidden>
-    <%=@multiply = row.quantity * row.price %>
-     <%=@total = @total + @multiply%>
-     </div>
-       <%end%>
-    <%end%>
+<%@cart_products.each do |row|%> 
+  <%if session[:rand_cart] == row.guest_id %>
+<tr>
+   <td class="product-name">
+      <h2 class="h5 text-black"><%=row.product_name%></h2>
+   </td>
+   <td>$<%=row.price%></td>
+   <td>
+      <%= form_with( url: update_quantity_path(row)  ,scope: :cart , method: :put  ) do |f| %>
+      <%= f.hidden_field :id , value: row.id%>
+      <%= f.number_field :quantity%>
+      <%= f.submit 'add quantity' %>
+      <% end %>
+      
+   </td>
+   <td><%= row.quantity * row.price%></td>
+   <td>
+      <%=link_to "X", delete_item_path(row), data: {'turbo-method': :delete  , turbo_confirm: 'Are you sure?'},class:"btn btn-danger btn-sm btn-rounded"%>
+   </td>
+   </td>
+</tr>
+<div hidden>
+   <%=@multiply = row.quantity * row.price %>
+   <%=@total = @total + @multiply%>
+</div>
+  <%end%>
+<%end%>

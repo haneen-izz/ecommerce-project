@@ -1,11 +1,11 @@
 class StoresController < ApplicationController
     before_action :set_store, only: [:show, :destroy,:edit,:update,:destroy_owner_store, :edit_owner_store ,:update_owner_store]
 	before_action :admin_only  ,:only => [:show,:index, :destroy,:edit,:update ] 
+	before_action :set_user_id , :only => [:edit,:new ] 
 
     # customer store
 	def new 
 		@store = Store.new    
-		@users = User.all
 	end
 	def create 
 		@store = Store.new(store_params)
@@ -23,7 +23,6 @@ class StoresController < ApplicationController
         redirect_to stores_path
     end
 	def edit
-        
     end
     def destroy
         @store.destroy
@@ -64,5 +63,8 @@ class StoresController < ApplicationController
 	end
     def set_store
         @store = Store.find(params[:id])
+	end
+	def set_user_id
+		@users = User.all
 	end
 end

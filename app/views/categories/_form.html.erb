@@ -1,21 +1,8 @@
-
 <%= form_with(model: @category) do |category|  %>
-
- <% if @category.errors.any? %>
-    <div style="color: red">
-      <ul>
-        <% @category.errors.each do |error| %>
-          <li><%= @error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-<div class = "form">
-<%= category.label :name ,  class:"form-label" %>
-<%= category.text_field :name , class:"form-control" %>
-</br>
-<%= category.submit  class:"btn btn-secondary"%>
+<div class = "form container mt-5">
+   <%= category.label :name ,  class:"form-label" %>
+   <%= category.text_field :name , class:"form-control" %>
+   </br>
+   <%= category.submit  class:"btn btn-secondary"%>
 </div>
 <%end%>
-
