@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 	before_action :set_cart, only: [:update, :destroy]
 	before_action :cart_session_timeout, only: [:index]
-
+    
 	#######################################################################
    def new
     @cart = Cart.new
@@ -43,7 +43,7 @@ class CartsController < ApplicationController
 		  Cart.all.each do |cart|
 		   if session[:old_rand_cart] == cart.guest_id
 			 Order.new(user_id: session[:user_id] ,price: cart.price , product_id: cart.product_id ,quantity: cart.quantity , product_name: cart.product_name).save
-			 @cart_product.destroy
+			 cart.destroy
 		  end
 	  end
           

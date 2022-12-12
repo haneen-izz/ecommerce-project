@@ -9,7 +9,7 @@
       <%= form_with( url: update_quantity_path(row)  ,scope: :cart , method: :put, remote: true  ) do |f| %>
       <%= f.hidden_field :id , value: row.id%>
       <%= f.number_field :quantity%>
-      <%= f.submit  %>
+      <%= f.submit 'add quantity' %>
       <% end %>
    </td>
    <td><%= row.quantity * row.price%></td>
