@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  before_action :category ,only: [:guest,:highest_price,:lowest_price,:show,:search]
-  before_action :store ,only: [:guest,:highest_price,:lowest_price,:show,:search,:product_by_store]
+  before_action :category 
+  before_action :store 
 
   #######################################################################
   # Guest page that contains the products 
