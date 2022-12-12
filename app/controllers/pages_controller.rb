@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   before_action :category ,only: [:guest,:highest_price,:lowest_price,:show,:search]
+  before_action :store ,only: [:guest,:highest_price,:lowest_price,:show,:search,:product_by_store]
+
   #######################################################################
   # Guest page that contains the products 
   def guest
@@ -25,6 +27,10 @@ class PagesController < ApplicationController
      @products = Product.order(price: :asc)
      render :guest
   end
+  def product_by_store
+      @stores = Store.find(params[:id]).products
+      render :guest
+ end
 
   def show
     @products = Category.find(params[:id]).products
@@ -41,5 +47,8 @@ class PagesController < ApplicationController
   private
   def category
     @categories = Category.all
+  end
+  def store
+    @stores = Store.all
   end
 end
