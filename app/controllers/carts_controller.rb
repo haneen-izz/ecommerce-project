@@ -8,8 +8,18 @@ class CartsController < ApplicationController
    end
 
     def create 
-		@cart = Cart.new(cart_params)
-		@cart.save
+		puts "***************************",params[:cart][:product_id]
+		
+	   @cart =  Cart.find_by(product_id: params[:cart][:product_id])
+		if @cart
+			@cart.update(quantity:@cart.quantity + params[:cart][:quantity].to_i  )
+			@cart.save
+		else
+			@cart = Cart.new(cart_params)
+			@cart.save
+		end
+			
+		
 	end
 
 	def index
@@ -41,7 +51,7 @@ class CartsController < ApplicationController
 	def checkout
        if session[:user_id]
 		  Cart.all.each do |cart|
-		   if session[:old_rand_cart] == cart.guest_id
+		   if session[:old_rand_cart] == cart.guest_id ||session[:old_rand_cart] == cart.guest_id
 			 Order.new(user_id: session[:user_id] ,price: cart.price , product_id: cart.product_id ,quantity: cart.quantity , product_name: cart.product_name).save
 			 cart.destroy
 		  end
@@ -57,12 +67,14 @@ class CartsController < ApplicationController
 	def cart_params
 		params.require(:cart).permit(:quantity,:product_id , :price , :guest_id ,:product_name ,:modify_date )
 	end
+	
 	def cart_update_params
-		params.require(:cart).permit(:quantity, :modify_date)
+		params.require(:cart).permit(:quantity)
 	end
 	def order_params
 	    params.require(:order).permit(:user_id ,:product_id ,:quantity ,:price ,:product_name )
 	end
+
 	def set_cart
         @cart_product = Cart.find(params[:id])
 	end
