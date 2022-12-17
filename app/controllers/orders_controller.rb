@@ -28,8 +28,11 @@ class OrdersController < ApplicationController
 		redirect_to orders_path
     end
 	def purchase_order
-        @get_order_by_owner = Order.all
-		@stores = Store.all
+		respond_to do |format|
+			format.html
+			format.json {render json: OrderDatatable.new(params, {current_user: current_user})} 
+	   end 
+
 	end
 	private 
 	def order_params

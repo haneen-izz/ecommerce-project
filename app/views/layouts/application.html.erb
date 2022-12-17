@@ -29,17 +29,21 @@
       <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
       <!-- SimpleLightbox plugin CSS-->
       <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+       <link href='https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css'>
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css" rel="stylesheet" />
    </head>
    <body style= "margin-top: -5%">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <%=render partial:'cart/cart' if@render_cart%>
       <%= yield %>
       <!-- MDB -->
       <script
          type="text/javascript"
          src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
          ></script>
+      <script  src="https://code.jquery.com/jquery-3.6.2.js" integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
+  <script  type="text/javascript"  src = 'https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'> </script>
+  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script> 
       <script src="https://kit.fontawesome.com/e75b311513.js" crossorigin="anonymous"></script>
    </body>
 </html>

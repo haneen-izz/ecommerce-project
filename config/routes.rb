@@ -15,6 +15,7 @@ Rails.application.routes.draw do
    get 'owner_home' , to: 'pages#owner_home'
    get 'lowest_price' , to: 'pages#lowest_price'
    get 'highest_price' , to: 'pages#highest_price'
+   get 'product_by_store/:id' ,to: 'pages#product_by_store' ,as: 'product_by_store'
    
    # owner product routes
    get 'owner_product' , to: 'products#owner_product'

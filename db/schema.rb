@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_08_204527) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_164350) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -69,6 +69,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_204527) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "orders_products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "quantity"
+    t.float "price"
+    t.float "total_price"
+    t.string "product_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_orders_products_on_order_id"
+    t.index ["product_id"], name: "index_orders_products_on_product_id"
+    t.index ["user_id"], name: "index_orders_products_on_user_id"
+  end
+
   create_table "product_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.bigint "product_id", null: false
@@ -120,6 +135,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_204527) do
   add_foreign_key "carts", "products", on_delete: :cascade
   add_foreign_key "orders", "products", on_delete: :cascade
   add_foreign_key "orders", "users", on_delete: :cascade
+  add_foreign_key "orders_products", "orders", on_delete: :cascade
+  add_foreign_key "orders_products", "products", on_delete: :cascade
+  add_foreign_key "orders_products", "users", on_delete: :cascade
   add_foreign_key "product_categories", "categories", on_delete: :cascade
   add_foreign_key "product_categories", "products", on_delete: :cascade
   add_foreign_key "products", "stores", on_delete: :cascade
