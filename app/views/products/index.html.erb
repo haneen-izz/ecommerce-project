@@ -1,9 +1,19 @@
 <%= render 'layouts/shared/side_menu'%>
 
-<div class="body_class">
+<div class="body_class" style="
+margin-top: 2%;" >
+
+<%= form_with url: import_products_path , method: :post do |form| %>
+<%= form.file_field :file%>
+<%= form.button  "Import"  ,class:"button-31" do %>
+ <i class="fa-solid fa-upload" style="color: white"></i> Import
+<% end %>
 
 
-<table class="table align-middle mb-0 bg-white table-hover">
+<%end%>
+
+
+<table class="table align-middle mb-0 bg-white table-hover" style= "margin-top:1%">
   <thead class="bg-light">
     <tr class="table-active">
       <th>Name</th>
@@ -25,7 +35,9 @@
         <div class="d-flex align-items-center">
         
                <%if row.image.attached?%>
-              <img   class="rounded-circle" style="width: 45px; height: 45px" src="<%= url_for (row.image)%> ">
+                  <img class="rounded-circle" style="width: 45px; height: 45px" src="<%= url_for (row.image)%> ">
+                <%else%>
+                  <img class="rounded-circle"  style="width: 45px; height: 45px" src="<%= url_for (row.url)  %>" >
               <%end%>
           <div class="ms-3">
             <p class="fw-bold mb-1"><%=row.name%></p>
@@ -86,8 +98,13 @@
     </tr>
  <%end%>
   </tbody>
+
 </table>
+
 <div class="btn-position"></div>
  <%=link_to "Create Product ", new_product_path , class:"btn btn-secondary btn-
  lg btn-rounded"%>
+</div>
+  <div class="pagination">
+  <%= will_paginate @products,  class: 'custom-pagination', style: "position:relative ; right: -40%"%>
 </div>

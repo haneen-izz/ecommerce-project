@@ -2,8 +2,6 @@
 
 <%= render 'layouts/shared/side_menu_owner'%>
 
-<%= render 'layouts/shared/side_menu_owner'%>
-
 <div class="body_class">
 
 
@@ -27,12 +25,9 @@
     <tr>
       <td>
         <div class="d-flex align-items-center">
-          <img
-              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-              alt=""
-              style="width: 45px; height: 45px"
-              class="rounded-circle"
-              />
+           <%if row.image.attached?%>
+              <img   class="rounded-circle" style="width: 45px; height: 45px" src="<%= url_for (row.image)%> ">
+          <%end%>
           <div class="ms-3">
             <p class="fw-bold mb-1"><%=row.name%></p>
           </div>
@@ -86,16 +81,16 @@
       <td class="text-center ">
          <%=link_to "show ", product_path(row) , class:"btn btn-success btn-sm btn-rounded"%>
 
-         <%=link_to "Edit Product ", edit_owner_product_path(row) ,class:"btn btn-primary btn-sm btn-rounded"%>
+         <%=link_to "Edit Product ",  edit_product_path(row) ,class:"btn btn-primary btn-sm btn-rounded"%>
        
-         <%=link_to "delete Product", destroy_owner_product_path(row) , data: {'turbo-method': :delete  , turbo_confirm: 'Are you sure?'},class:"btn btn-danger btn-sm btn-rounded"%></td>
+         <%=link_to "delete Product", row, data: {'turbo-method': :delete  , turbo_confirm: 'Are you sure?'},class:"btn btn-danger btn-sm btn-rounded"%></td>
       </td>
     </tr>
  <%end%>
   </tbody>
 </table>
 <div class="btn-position"></div>
- <%=link_to "Create Product ",owner_new_product_path, class:"btn btn-secondary btn-
+ <%=link_to "Create Product ",new_product_path, class:"btn btn-secondary btn-
  lg btn-rounded"%>
 </div>
 

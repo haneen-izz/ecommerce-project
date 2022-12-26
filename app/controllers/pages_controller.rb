@@ -19,20 +19,26 @@ class PagesController < ApplicationController
 
   def highest_price
       @products = Product.order(price: :desc)
+      paginate(5)
       render :guest
+
   end
 
   def lowest_price
      @products = Product.order(price: :asc)
+     paginate(5)
      render :guest
+
   end
   def product_by_store
       @products = Store.find(params[:id]).products
+      paginate(5)
       render :guest
  end
 
-  def show
+  def product_by_category
     @products = Category.find(params[:id]).products
+    paginate(5)
     render :guest
   end
 
@@ -40,6 +46,7 @@ class PagesController < ApplicationController
   # This method search for a particular product when user enter a product name even he entered only first two chars it will return the similar products with first chars
   def search 
        @products = Product.where('name LIKE ?','%' + params[:name] + '%')
+       paginate(5)
        render :guest
   end 
 
@@ -51,6 +58,7 @@ class PagesController < ApplicationController
     @stores = Store.all
   end
   def product
-     @products = Product.all 
+     @products = Product.all
+     paginate(5)
   end
 end

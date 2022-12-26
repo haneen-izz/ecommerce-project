@@ -76,3 +76,11 @@ gem "devise", "~> 4.8"
 gem "ajax-datatables-rails", "~> 1.3"
 
 gem "jquery-datatables", "~> 1.10"
+
+gem "fastercsv", "~> 1.5"
+
+gem "bulk_insert", "~> 1.9"
+
+gem "will_paginate", "~> 3.3"
+
+gem "smarter_csv", "~> 1.7"

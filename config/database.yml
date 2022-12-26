@@ -53,3 +53,4 @@ production:
   database: ecommerce_store_production
   username: ecommerce_store
   password: <%= ENV["ECOMMERCE_STORE_DATABASE_PASSWORD"] %>
+ 

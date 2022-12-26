@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
     before_action :set_category, only: [:show, :destroy,:edit,:update]
+	before_action :admin_only  ,:only => [:show,:index, :destroy,:edit,:update ] 
+
 
 	def new 
 		@category = Category.new    

@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-    before_action :set_store, only: [:show, :destroy,:edit,:update,:destroy_owner_store, :edit_owner_store ,:update_owner_store]
+    before_action :set_store, only: [:show, :destroy,:edit,:update]
 	before_action :admin_only  ,:only => [:show,:index, :destroy,:edit,:update ] 
 	before_action :set_user_id , :only => [:edit,:new ] 
 
@@ -7,12 +7,16 @@ class StoresController < ApplicationController
 	def new 
 		@store = Store.new    
 	end
-	def create 
+	def create 	
 		@store = Store.new(store_params)
-		@store.save 
-        redirect_to stores_path
-	
-	end
+		unless current_user.admin?
+		   @store.user = current_user
+	       @store.save 
+		else
+           @store.save
+	    end
+		   user_role
+    end
 	def index
 		@stores = Store.all
 	end 
@@ -20,13 +24,13 @@ class StoresController < ApplicationController
 	end
     def update
         @store.update(store_params)
-        redirect_to stores_path
+		user_role
     end
 	def edit
     end
     def destroy
         @store.destroy
-		redirect_to stores_path
+		user_role
     end
 
 
@@ -38,24 +42,9 @@ class StoresController < ApplicationController
 	def owner_new_store 
 		@store = Store.new    
 	end
-    def create_owner_store
-		
-		@store = Store.new(store_params)
-		@store.user = current_user
-	    @store.save 
-        redirect_to owner_store_path   
-	end
 	def edit_owner_store
 	    
 	end
-	def update_owner_store
-	    @store.update(store_params)
-        redirect_to owner_store_path
-	end
-	def destroy_owner_store
-        @store.destroy
-		redirect_to owner_store_path
-    end
 
 	private 
 	def store_params
@@ -66,5 +55,13 @@ class StoresController < ApplicationController
 	end
 	def set_user_id
 		@users = User.all
+	end
+	def user_role
+		case current_user.role
+		when "admin"
+		 	 redirect_to stores_path
+		else
+			 redirect_to owner_store_path   
+	    end
 	end
 end

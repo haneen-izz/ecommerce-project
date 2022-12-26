@@ -4,33 +4,31 @@ class ProductCategoriesController < ApplicationController
     before_action :all_product_category, only: [:edit,:new]
 
     
-       def new 
-		  @product_category = ProductCategory.new    
-          
-	   end
+   def new 
+	   @product_category = ProductCategory.new      
+   end
 
-      def index 
-           @product_category =  ProductCategory.all   
-      end
+   def index 
+       @product_category =  ProductCategory.all   
+   end
     
-      def create 
-          @product_category = ProductCategory.new(product_category_params)
-		   if @product_category.save 
-            redirect_to product_categories_path
-		  end
-       end
+   def create 
+       @product_category = ProductCategory.new(product_category_params)
+	   @product_category.save 
+       redirect_to product_categories_path
+   end
 
-       def show 
-       end
+   def show 
+   end
 
-       def update
-        @product_category.update(product_category_params)
-        redirect_to product_categories_path
-       end
+   def update
+       @product_category.update(product_category_params)
+       redirect_to product_categories_path
+   end
 
-	   def edit
+   def edit
         
-       end
+   end
 
        def destroy
            @product_category.destroy

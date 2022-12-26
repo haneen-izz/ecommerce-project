@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
      before_action :configure_permitted_parameters, if: :devise_controller?
+
      #######################################################################
      if @rand_c != nil
      else
@@ -10,6 +11,10 @@ class ApplicationController < ActionController::Base
    
      def configure_permitted_parameters
        devise_parameter_sanitizer.permit(:sign_up, keys: [:email ,:password, :role])
+     end
+
+     def paginate(items_per_page)
+          @products = @products.paginate(:page => params[:page], :per_page => items_per_page)
      end
 
      #######################################################################
@@ -28,13 +33,14 @@ class ApplicationController < ActionController::Base
              owner_home_path
         end
      end
+     
 
         
      #######################################################################
      #This method for authorization will check if the current user is admin it will give him the persmissions i used it in the controllers to prevent any other roles from make any operation or see the page
      
      def admin_only
-     redirect_to new_user_session_path unless current_user && current_user.admin?
+         redirect_to new_user_session_path unless current_user && current_user.admin?
      end
 
 

@@ -5,13 +5,14 @@ class OrderDatatable < AjaxDatatablesRails::ActiveRecord
     # or in aliased_join_table.column_name format
     @view_columns ||= {
       id: { source: "Order.id", cond: :eq },
-      user_id: { source: "Order.user_id"},
+      product_name: { source: "Order.product_name", searchable: true , cond: :like },
+      user_id: { source: "Order.user_id" , searchable: true},
       product_id: { source: "Order.product_id"},
-      email: { source: "Order.user.email"},
+      email: { source: "Order.user.email" ,searchable: true},
       quantity: { source: "Order.quantity"},
       price: { source: "Order.price"},
       store_name: { source: "Order.product.store.name"},
-      created_at: { source: "Order.created_at"},
+      created_at: { source: "Order.created_at" , orderable: true},
     }
   end
 
@@ -20,6 +21,7 @@ class OrderDatatable < AjaxDatatablesRails::ActiveRecord
       {
         # example:
         id: record.id,
+        product_name: record.product_name,
         user_id: record.user_id,
         product_id: record.product_id,
         email: record.user.email,

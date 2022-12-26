@@ -5,16 +5,17 @@
 <%= store.label :name ,  class:"form-label" %>
 <%= store.text_field :name , class:"form-control" %>
 
+<%unless current_user.owner?%>
 <%= store.label :user_id ,  class:"form-label" %>
-
 <select name="store[user_id]" id="store_user_id" >
   <option selected="selected" value="">Choose Owner</option>
-<%@users.each do  |row|%>
-<% if row.role == 'owner'%>
-  <option value="<%=row.id%>" class="form-control"><%= row.email%></option>
-<%end%>
-  <%end%>
+    <%@users.each do  |row|%>
+       <% if row.role == 'owner'%>
+        <option value="<%=row.id%>" class="form-control"><%= row.email%></option>
+       <%end%>
+    <%end%>
 </select>
+<%end%>
 
 </br>
 <%= store.submit  class:"btn btn-secondary"%>

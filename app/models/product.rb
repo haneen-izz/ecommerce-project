@@ -4,7 +4,7 @@ class Product < ApplicationRecord
     validates :name , presence: true 
     validates :price , numericality: {greater_than_or_equal_to: 1}
     belongs_to :store
-    belongs_to :user
+    belongs_to :user ,optional: true
     has_many :orders
     has_many :carts ,through: :orders
     has_one_attached :image

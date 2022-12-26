@@ -16,8 +16,10 @@
 					<a class="product-item">
 				
 						<%if row.image.attached?%>
-								<img  class="img-fluid product-thumbnail" src="<%= url_for (row.image)%> ">
-								<%end%>
+							<img  class="img-fluid product-thumbnail" src="<%= url_for (row.image)%> ">
+						<%else%>
+                             <img class="img-fluid product-thumbnail"  src="<%= url_for (row.url)  %>" >
+						<%end%>
 
 						<h3 class="product-title"><%=row.name%></h3>
 						<strong class="product-price">$<%=row.price%></strong>
@@ -42,7 +44,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-		
+	  <div class="pagination">
+  <%= will_paginate @products,  class: 'custom-pagination', style: "position:relative ; right: -25%; margin-bottom: 5%"%>
+</div>

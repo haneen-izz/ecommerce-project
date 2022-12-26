@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
 
    resources :categories
-   resources :products
+   resources :products do
+    collection {post :import}
+  end
+
    resources :product_categories
    resources :stores
    resources :orders
@@ -16,7 +19,8 @@ Rails.application.routes.draw do
    get 'lowest_price' , to: 'pages#lowest_price'
    get 'highest_price' , to: 'pages#highest_price'
    get 'product_by_store/:id' ,to: 'pages#product_by_store' ,as: 'product_by_store'
-   
+   get 'product_by_category/:id' ,to: 'pages#product_by_category' ,as: 'product_by_category'
+
    # owner product routes
    get 'owner_product' , to: 'products#owner_product'
    get 'owner_new_product' , to: 'products#owner_new_product'
@@ -27,7 +31,6 @@ Rails.application.routes.draw do
   
 
     # owner store routes
-
    get 'owner_store' , to: 'stores#owner_store'
    get 'owner_new_store' , to: 'stores#owner_new_store'
    post 'owner_new_store' , to: 'stores#create_owner_store'

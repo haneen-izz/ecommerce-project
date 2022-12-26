@@ -2,7 +2,7 @@
    <p class="mb-2">Category</p>
    <%@categories.each do |row|%>
    <ul class="list-group">
-      <li class="list-group-item list-group-item-action mb-2 "> <%=link_to row.name, page_path(row), class: "text-muted"%></span> </a></li>
+      <li class="list-group-item list-group-item-action mb-2 "> <%=link_to row.name, product_by_category_path(row), class: "text-muted"%></span> </a></li>
       <%end%>
    </ul>
 </div>
