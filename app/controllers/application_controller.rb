@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
           @products = @products.paginate(:page => params[:page], :per_page => items_per_page)
      end
 
+     
+
      #######################################################################
      #After user sign in this method will check if the user [admin , role , owner] and based of the entered email will be redirected to the target page
     def after_sign_in_path_for(resource)

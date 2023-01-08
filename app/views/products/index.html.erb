@@ -1,14 +1,29 @@
+<style>
+    .progress {
+        width: 500px;
+        height: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        width: 0%;
+        height: 100%;
+        background-color: #4caf50;
+    }
+
+</style>
+
 <%= render 'layouts/shared/side_menu'%>
 
-<div class="body_class" style="
-margin-top: 2%;" >
+<div class="body_class" style="margin-top: 2%;" >
 
 <%= form_with url: import_products_path , method: :post do |form| %>
 <%= form.file_field :file%>
 <%= form.button  "Import"  ,class:"button-31" do %>
  <i class="fa-solid fa-upload" style="color: white"></i> Import
 <% end %>
-
 
 <%end%>
 
@@ -86,8 +101,11 @@ margin-top: 2%;" >
           </div>
         </div>
       </td>
-     
+  <div class="progress" style="display: none">
+  <div class="progress-bar" style="width: 0%">
     
+  </div>
+</div>
       <td class="text-center ">
          <%=link_to "show ", product_path(row) , class:"btn btn-success btn-sm btn-rounded"%>
 
@@ -101,10 +119,15 @@ margin-top: 2%;" >
 
 </table>
 
+
+
 <div class="btn-position"></div>
  <%=link_to "Create Product ", new_product_path , class:"btn btn-secondary btn-
  lg btn-rounded"%>
-</div>
+
+
+
   <div class="pagination">
   <%= will_paginate @products,  class: 'custom-pagination', style: "position:relative ; right: -40%"%>
 </div>
+

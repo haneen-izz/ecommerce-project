@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+
   devise_for :users
 
    resources :categories
    resources :products do
     collection {post :import}
   end
+  mount ActionCable.server => '/cable'
+
 
    resources :product_categories
    resources :stores
@@ -50,6 +54,7 @@ Rails.application.routes.draw do
    get 'checkout' , to: 'carts#checkout'
 
    get 'purchase_order' , to: 'orders#purchase_order'
+
 
 
   end

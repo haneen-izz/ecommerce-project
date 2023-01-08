@@ -7,6 +7,7 @@
       <%= csp_meta_tag %>
       <%= stylesheet_link_tag "application", "data-turbo-track": "reload" ,:media => "all"  %>
       <%= javascript_importmap_tags %>
+
       <link
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
          rel="stylesheet"
@@ -32,6 +33,7 @@
        <link href='https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css'>
     <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css" rel="stylesheet" />
    </head>
+   
    <body style= "margin-top: -5%">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
@@ -42,8 +44,50 @@
          src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
          ></script>
       <script  src="https://code.jquery.com/jquery-3.6.2.js" integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
-  <script  type="text/javascript"  src = 'https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'> </script>
-  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script> 
+      <script  type="text/javascript"  src = 'https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'> </script>
+       <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script> 
       <script src="https://kit.fontawesome.com/e75b311513.js" crossorigin="anonymous"></script>
+      <script>
+    function createSocket(){
+        socket_url = 'ws://127.0.0.1:3000/cable'
+        const socket = new WebSocket(socket_url)
+
+        socket.onopen = function (event){
+            console.log('Connected to server')
+            const msg = {
+                command: 'subscribe',
+                identifier: JSON.stringify({
+                    id: 1,
+                    channel: 'AlertsChannel'
+                })
+            }
+            socket.send(JSON.stringify(msg))
+        }
+
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            if (['ping', 'welcome', 'confirm_subscription'].includes(data.type)) {
+                return;
+            }
+            document.querySelector('.progress').style.display = 'initial';
+            let progress = document.querySelector('.progress-bar');
+            progress.innerHTML = data.message+'%'
+            progress.style.width = data.message+'%'
+            console.log(data)
+
+
+
+        }
+
+        socket.onclose = function (event){
+            console.log("Disconnect from server")
+        }
+
+        socket.onerror = function (error) {
+            console.log("Websocket error observed", error)
+        }
+    }
+createSocket()
+</script>
    </body>
 </html>

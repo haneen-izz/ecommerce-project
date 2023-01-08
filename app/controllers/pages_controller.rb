@@ -37,9 +37,9 @@ class PagesController < ApplicationController
  end
 
   def product_by_category
-    @products = Category.find(params[:id]).products
-    paginate(5)
-    render :guest
+      @products = Category.find(params[:id]).products
+      paginate(5)
+      render :guest
   end
 
   #######################################################################
@@ -52,10 +52,10 @@ class PagesController < ApplicationController
 
   private
   def category
-    @categories = Category.all
+      @categories = Category.all
   end
   def store
-    @stores = Store.all
+     @stores = Store.all
   end
   def product
      @products = Product.all

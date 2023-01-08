@@ -84,3 +84,13 @@ gem "bulk_insert", "~> 1.9"
 gem "will_paginate", "~> 3.3"
 
 gem "smarter_csv", "~> 1.7"
+
+gem "sidekiq", "~> 7.0"
+
+gem "sidekiq-status", "~> 2.1"
+
+gem "redis", "~> 5.0"
+
+gem "progress_bar", "~> 1.3"
+
+

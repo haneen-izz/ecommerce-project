@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
 	require 'csv'
-
     before_action :set_product, only: [:show, :destroy,:edit,:update , :edit_owner_product]
 	before_action :admin_only  ,:only => [:show,:index, :destroy,:edit,:update ] 
 	before_action :all_stores
@@ -18,7 +17,6 @@ class ProductsController < ApplicationController
 	def index 
 		@products = Product.all
 		paginate(5)
-
 	end 
 	def show 
 	end
@@ -48,35 +46,14 @@ class ProductsController < ApplicationController
  
 	def edit_owner_product  
 	end
-	def import 
-	    @product = Product.all
+	def import
+		@product = Product.all
 		file = params[:file]
-
-	    return redirect_to products_path ,notice: "only csv file can be imported" unless params[:file].content_type=="text/csv"
-		file = File.open(file)
-		csv = CSV.parse(file, headers: true )
-		csv.each do |row|
-			unless row['ID'] == nil
-			    prod = Product.find_by(id: row['ID'])
-			    product_hash = {}
-				product_hash[:id] = row['ID']
-				product_hash[:name] = row['Name']
-				product_hash[:description] = row['Description']
-				product_hash[:price] = row['Price']
-				product_hash[:production_date] = row['Production Date']
-				product_hash[:expiration_date] = row['Expiration Date']
-				product_hash[:price] = row['Price']
-		        product_hash[:stock_quantity] = row['Stock Quantity']
-				product_hash[:store_id] = row['Store Id']
-				product_hash[:url] = row['Url']
-			if prod.present?
-			     prod.update(product_hash)
-			else 
-				Product.create!(product_hash)
-			end
-		 end
-	  end
-      redirect_to products_path
+		file_path = File.join(Rails.root, "tmp", file.original_filename)
+		File.open(file_path, "wb") do |f|
+		  f.write(file.read)
+		end
+		ImportCsvJob.perform_later( file_path)
 	end
 
 	private 
