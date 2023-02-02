@@ -12,14 +12,14 @@ class ImportCsvJob < ApplicationJob
   
         product_hash = {}
         unless row['ID'] == nil
-            prod = Product.find_by(id: row['ID'])
+          prod = Product.find_by(id: row['ID'])
           product_hash[:id] = row['ID']
           product_hash[:name] = row['Name']
           product_hash[:description] = row['Description']
           product_hash[:production_date] = row['Production Date']
           product_hash[:expiration_date] = row['Expiration Date']
           product_hash[:price] = row['Price']
-              product_hash[:stock_quantity] = row['Stock Quantity']
+          product_hash[:stock_quantity] = row['Stock Quantity']
           product_hash[:store_id] = row['Store Id']
           product_hash[:url] = row['Url']
           

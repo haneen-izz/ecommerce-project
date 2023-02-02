@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
 	def edit_owner_product  
 	end
 	def import
-		@product = Product.all
+		# @product = Product.all
 		file = params[:file]
 		file_path = File.join(Rails.root, "tmp", file.original_filename)
 		File.open(file_path, "wb") do |f|

@@ -8,8 +8,7 @@ class CartsController < ApplicationController
    end
 
     def create 
-		puts "***************************",params[:cart][:product_id]
-		
+		# puts "***************************",params[:cart][:product_id]
 	   @cart =  Cart.find_by(product_id: params[:cart][:product_id])
 		if @cart
 			@cart.update(quantity:@cart.quantity + params[:cart][:quantity].to_i  )
